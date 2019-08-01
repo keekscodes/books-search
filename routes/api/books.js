@@ -1,31 +1,17 @@
-const express = require("express");
 
-const mongoose = require("mongoose");
-const routes = require("./routes");
-const app = express();
-const PORT = process.env.PORT || 3001;
+const router = require("express").Router();
+const bookController = require("../../controllers/bookController");
 
-// Configure body parsing for AJAX requests
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-// Serve up static assets
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
+// Matches with "/api/books"
+router.route("/")
+  .get(bookController.findAll)
+  .post(bookController.create);
 
-// Add routes, both API and view
-app.use(routes);
+// Matches with "/api/books/:id"
+router
+  .route("/:id")
+  .get(bookController.findById)
+  .put(bookController.update)
+  .delete(bookController.remove);
 
-// Connect to the Mongo DB
-mongoose.connect(
-  process.env.MONGODB_URI || "",
-  {
-    useCreateIndex: true,
-    useNewUrlParser: true
-  }
-);
-
-// Start the API server
-app.listen(PORT, () =>
-  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`)
-);
+module.exports = router;
