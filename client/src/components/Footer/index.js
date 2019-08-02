@@ -5,8 +5,8 @@ function Footer() {
   return (
     <footer>
       <hr />
-      <p className="pull-right">
-      document.write(new Date().getFullYear());
+      <p className="text-center">
+      &copy;2019
       </p>
     </footer>
   );
