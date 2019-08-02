@@ -13,7 +13,7 @@ class Home extends Component {
   state = {
     books: [],
     q: "",
-    message: "Search For A Book To Begin!"
+    message: "Search For A Book"
   };
 
   handleInputChange = event => {
@@ -33,7 +33,7 @@ class Home extends Component {
       .catch(() =>
         this.setState({
           books: [],
-          message: "No New Books Found, Try a Different Query"
+          message: "No New Books Found"
         })
       );
   };
@@ -64,13 +64,14 @@ class Home extends Component {
           <Col size="md-12">
             <Jumbotron>
               <h1 className="text-center">
-                <strong>(React) Google Books Search</strong>
+                <strong>Google Books Search</strong>
               </h1>
-              <h2 className="text-center">Search for and Save Books of Interest.</h2>
+              <h2 className="text-center">I feel so empty (shelf awareness).</h2>
+              <h4>Search and Save Books.</h4>
             </Jumbotron>
           </Col>
           <Col size="md-12">
-            <Card title="Book Search" icon="far fa-book">
+            <Card title="Book Search">
               <Form
                 handleInputChange={this.handleInputChange}
                 handleFormSubmit={this.handleFormSubmit}
