@@ -22,25 +22,27 @@ class Home extends Component {
     });
   };
 
+  handleFormSubmit = event => {
+    event.preventDefault();
+    this.getBooks();
+  };
+
   getBooks = () => {
     API.getBooks(this.state.q)
       .then(res =>
         this.setState({
           books: res.data
         })
-      )
+        )
       .catch(() =>
         this.setState({
           books: [],
           message: "No New Books Found"
         })
       );
-  };
+      
+    };
 
-  handleFormSubmit = event => {
-    event.preventDefault();
-    this.getBooks();
-  };
 
   handleBookSave = id => {
     const book = this.state.books.find(book => book.id === id);
